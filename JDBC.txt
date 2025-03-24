@@ -1,0 +1,233 @@
+Advanced Java:
+==============
+
+JDBC: Java Database Connectivity
+Connecting Java Application to a database.
+It is an API used to interact with a database from a java application.
+JDBC driver acts as a translator between Java application and database.
+
+Steps for Database connection:
+1. Load and register driver.
+Class.forName("com.mysql.cj.jdbc.Driver") // for MySQL 8.0
+
+2. Create connection
+Connection con = DriverManager.getConnection("url","username","password")
+
+3. Create Statement
+PreparedStatement ps = con.prepareStatement("sql query")
+
+4. Execute SQL statements
+ResultSet rs = ps.executeQuery(); // select query - for data fetch
+int result = ps.executeUpdate(); // to insert, update, delete
+
+5. Process the result
+
+6. Close the connection
+ps.close();
+con.close();
+Download mysql driver file - https://downloads.mysql.com/archives/c-j/
+
+Servlet: Server side technology which is used to handle the client request, process the request and generate dynamic response.
+
+
+Web servers: Apache Tomcat, Glassfish, Jetty
+Application servers: JBoss, Weblogic, IBM Websphere
+
+Servers contain many containers like
+Servlet container
+JSP container
+Security container
+WebSocket container
+JNDI container
+
+Servlet is deployed on the server. Servlet class/File is managed by Servlet container. Servlet file checks and processes the request sent by the client.
+After the request is processed a dynamic/static reponse is generated.
+Then the reponse is sent to the client
+
+Adding Apache Tomcat to Eclipse.
+https://tomcat.apache.org/
+Go to preferences -> Server -> Runtime environment -> add select apache version -> browse the apache folder path
+Go to window -> show view -> servers
+click on the server in console -> select the apache version
+right click on the server in console and click start
+
+
+Creating a Servlet:
+It can be created in three ways
+
+Servlet (I)
+It defines servlet life cycle methods.
+
+GenericServlet (C)
+When we want to create protocal independent servlet. It does not have request, response objects.
+
+HttpServlet (C)
+When we want http specific methods and request response object
+
+class MyServlet extends HttpServlet{
+}
+
+we have to create a DeploymentDescriptor file - web.xml
+
+
+Servlet Life cycle:
+Loading and Instantiation
+when ever server is started servlet class is loaded in the memory and servlet object is created
+
+Initialization - init()
+servlet object will be initaialized by inviking init() method
+
+request handling - service()
+It will handle client request. service method is invoked
+When ever a client request is received a thread is created. that thread will handle the client request. Service() method will be execute every time a request is received.
+Multithreading is already implemented in Servlet to handle multiple requests.
+
+Destroy - destroy()
+When ever the srever is shut down, destroy() is executed, the serverlet object is destroyed
+
+Web.xml file
+also known as deployment descriptor - contains description for deploying your app
+use - There will be many servlets in the web server.
+when the client request is sent to server, then based on the url/api that particular servlet is executed. This configuration is mentioned in web.xml file.
+
+Syntax
+<servlet-mapping>
+<servlet-name>servlet name
+<url-pattern>url of the servlet
+</servlet-mapping>
+
+<servlet>
+<servlet-name>servlet name
+<servlet-class>package of servlet class
+<servlet>
+
+we create web-xml file in WEB-INF folder
+
+
+@WebServlet annotation
+It is used on the servlet class. We do not need to write web.xml file if we use @WebServlet annotation
+
+
+
+GET and POST requests:
+Get method is used to send data through resource url and recieve a response. it is not safe
+we can only send limited data through GET request (max 2048 characters)
+it is fast because the values are sent in header
+
+POST method data is sent through HTTP message body. it is safe.
+we can send huge amount of data
+it is slightly slow beacuse values are sent in the request body.
+
+sendRedirect() method - HttpServletResponse
+It is used to redirect to a different application or URL from our application
+It changes the URL in the browser
+
+RequestDispatcher(I) - It is used to redirect/dispatch the application internally.
+it has 2 methods forward(), include
+it doesnot change the URL on the browser
+
+
+HttpSession:
+Request object is deleted once it is received by the servlet. In order to maintain or use the request object values we need to create a session object and set the values to that object and get the values in other pages.
+
+1. Create session
+HttpSession hs = req.getSession();
+
+2. Set the attributes into the session
+hs.setAttributes("key", value)
+
+
+3. get the values
+Object obj = hs.getAttribute("key");
+
+4. remove values from session object
+hs.removeAttribute("key");
+
+5. To delete the session object
+hs.invalidate
+
+FOR EVERY CLIENT A SESSION OBJECT AND A UNIQUE SESSION ID IS CREATED. IF SAME CLIENT IS SENDING MULTIPLE REQUESTS IT WILL USE THE SAME SESSION ID
+
+
+
+JSP:
+Java Server Pages
+It is also server side scripting technology. JSP is used to create dynamic web pages for the frontend.
+It is the advanced version of Servlet.
+Before jsp front end was created in same servlet code by embedding html code in java using out.print(), which could make the application slightly slow.
+Using jsp we can embbed java code in html by using tags.
+JSP container is used to execute all the JSP methods
+
+JSP life cycle:
+1. Translation
+JSP is converted to servlet (jsp to java file - index_jsp.java)
+
+2. Compilation
+servlet file is compiled and .class file is generated
+
+3. Loading & instantiation
+.class file is loaded on server and object is created.
+
+4. initialization
+jspInit() method is executed and object is initialized
+
+5. Request handling
+_jspService() methos is executed to handle the client request
+
+6. Destroy
+The jspDestry() is executed and object is destroyed.
+
+JSP tags
+
+1. Scripting Tags
+Used to embed java code in the JSP code
+<%   %>
+
+   -> Scriptlet tag
+	<%   %> - Used to embed java code in the JSP code
+
+   -> Declarative tag
+	<%!   %> - Used to declare methods or variables
+
+   -> Expression tag
+	<%=   %> - Used to print varales
+
+
+Declarative tag will be in the class level after conevrting to servlet file
+Scriptive tags and Expression tags - these will be inside the _jspService() method
+
+2. Directive tags
+Used to give intructions to JSP container on how to handle/process JSP pages during compilation
+<%@   %>
+
+   -> Page Directive
+	<%@ page attribute= "value" %>
+   -> Include Directive
+	<%@ include file= "resource" %>
+   -> Taglib Directive
+	<%@ taglib uri = " " prefix = " " %>
+
+3. Action Tags
+Used to perform specific actions or operations with in JSP page like forwarding, manipulating sessio attributes
+<jsp:  />
+
+-> Include tags
+<jsp: include />
+
+-> Forward tags
+<jsp: include />
+
+-> Bean Action Tags
+<jsp: useBean />
+<jsp: getProperty />
+<jsp: setProperty />
+... etc
+
+
+All these are pre defined tags. But there are many other lags or libraries that can be used in JSP to provide additional functionality to JSP.
+
+JSTL (JSP Standard Tag library>
+Spring MVC tags
+JSF tags (JavaServer faces)
+struts
+...etc
