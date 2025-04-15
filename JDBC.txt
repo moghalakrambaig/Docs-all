@@ -1,6 +1,5 @@
 Advanced Java:
 ==============
-
 JDBC: Java Database Connectivity
 Connecting Java Application to a database.
 It is an API used to interact with a database from a java application.
@@ -194,7 +193,7 @@ Used to embed java code in the JSP code
 
 
 Declarative tag will be in the class level after conevrting to servlet file
-Scriptive tags and Expression tags - these will be inside the _jspService() method
+Scriptlet tags and Expression tags - these will be inside the _jspService() method
 
 2. Directive tags
 Used to give intructions to JSP container on how to handle/process JSP pages during compilation
@@ -231,3 +230,21 @@ Spring MVC tags
 JSF tags (JavaServer faces)
 struts
 ...etc
+
+JSP implicit objects
+JSP has 9 implicit objects
+session
+out
+request
+response
+config
+application
+pageContext
+page
+exception
+
+We do not need to create objects explicitly for these. we can directly use tem in JSP file.
+
+Expression Language is simplified language used to access and maniplate data with in JSP pages
+
+syntax: ${ expression }
