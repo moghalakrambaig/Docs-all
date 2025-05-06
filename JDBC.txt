@@ -5,6 +5,12 @@ Connecting Java Application to a database.
 It is an API used to interact with a database from a java application.
 JDBC driver acts as a translator between Java application and database.
 
+The Java Database Connectivity (JDBC) API provides universal data access from the Java programming language. Using the JDBC API, you can access virtually any data source, from relational databases to spreadsheets and flat files. JDBC technology also provides a common base on which tools and alternate interfaces can be built.
+
+The JDBC API is comprised of two packages:
+java.sql
+javax.sql
+
 Steps for Database connection:
 1. Load and register driver.
 Class.forName("com.mysql.cj.jdbc.Driver") // for MySQL 8.0

@@ -1,0 +1,64 @@
+OpenJDK builds by Oracle (jdk.java.net)
+Oracle Java SE Development Kit (JDK)
+Adoptium Eclipse Temurin
+AdoptOpenJDK
+Azul Zulu
+Azul Zing
+BellSoft Liberica JDK
+IBM Semeru Runtime
+Amazon Corretto
+Microsoft Build of OpenJDK
+Alibaba Dragonwell
+SapMachine
+Red Hat OpenJDK
+GraalVM
+
+Lambda Expression:
+Enable functional programming
+Write more readable, maintainable and concise code
+To use APIs easily and effectively
+To enable parallel processing
+
+It is an anonymous function.
+An anonymous function is a function which does not have any name, modifiers and return type.
+
+public void m1(){
+sopln("Hello");
+}
+
+() -> {sopln("Hello")}
+() -> sopln("Hello")
+
+(String s) -> {return s.length();}
+(s) -> return s.length();
+(s) -> s.length();
+s -> s.lenth();
+
+LE can take any number of parameters.
+if there is only one parameter no need to have parenthesis
+if we have only one statements in the body no need to have curly braces.
+If compiler is able to guess the data type then no need to explicitly mention the data type.
+if LE returns something then we can remove reurn statement.
+
+Functional Interface:
+An interface which contains only one abstract method.
+To explicitly mention an interface as a FI, we can annotate the interface with @FuntionalInterface to tell the compiler that this is a funtional interface.
+We will get error if we try to add more than one method.
+
+Funtional Interfaces are used to call/invoke lambda expression implementation.
+Funtional Interface reference is used to hold lambda expression.
+it act as a type for LE
+intref i = () -> sopln("Hello");
+
+interface intref{
+public void m1();
+}
+
+class Test{
+public static void main(String[] args)
+{
+
+intref i = () -> sopln("Hello");
+i.m1()
+
+}
