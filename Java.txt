@@ -62,3 +62,62 @@ intref i = () -> sopln("Hello");
 i.m1()
 
 }
+
+
+Static Modifier
+===============
+It is applicable for variables, methods ad inner classes.
+In the case of instance variables For every object a seperate copy will e created, but in the case of static variables a single copy will be created at class level and shared by every object of that
+class
+
+We can't access instance members directly from static area, but we can access instance area directly.
+We can access static members from both instance and static areas directly.
+
+We can overload static method including main method, but JVM calls only String[] args main method.
+For static method inheritance also applicable including main method.
+Override concept is applicable on the static and main method but it is not called overring it is method hiding concept.
+We cannot override a instance method wit static method or vice versa.
+
+if a method uses instance variable it is a instance method.
+if a method is not using any instance variable we can declare that method as static.
+
+Both parent class and child class method should be static in method hiding. (method resolution taken care by compiler based on reference type)
+Both parent class and child class method should be non-static in overriding hiding. (method resolution taken care by JVM based on run time object)
+
+static and abstract combination is illegal.
+Synchronized and abstract combination is illegal.
+
+
+Generics:
+Provides type safety and To resolve type casting problems.
+
+1.4v
+
+ArrayList al = new ArrayList();
+||
+class ArrayList{
+add(Object o);
+Object get(int index)
+}
+
+here we can any type of object, so there is no type safety.
+we need to type cast while retrieving the objects.
+
+1.5v
+T - type parameter
+class ArrayList<T>{
+add(T o);
+T get(int index)
+}
+
+We can define our own generic classes also
+class Account<T>
+{
+}
+
+Account<Gold> a1 = new Account<Gold>();
+
+Bounded Types:
+we can use only extends keyword for bounded keywords
+
+Class Test<T extends X> => X can be either class or interface
